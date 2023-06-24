@@ -1,0 +1,11 @@
+{
+  "name": "sevima-eduai",
+  "version": "1.0.0",
+  "description": "Hackathon Sevima - Website Pendidikan Berbasis AI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yunstech",
+  "license": "ISC"
+}

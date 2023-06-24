@@ -1,0 +1,29 @@
+<%- include('../partials/dashboard/dashboard-header') %>
+    <div class="container">
+        <h4>Nilai : <%= quiz.nilai %>
+        </h4>
+        <% salah.forEach((soal, i)=> { %>
+
+
+            <div class="card text-bg-dark m-3">
+                <div class="card-header text-bg-dark">
+                    <%= soal.soal %>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Jawabanmu : <%= soal.jawabanUser %>.
+                            <%= soal.jawaban[0][soal.jawabanUser] %>
+                    </h5>
+                    <h5 class="card-title">Jawaban yang benar : <%= soal.jawabanBenar %>.
+                            <%= soal.jawaban[0][soal.jawabanBenar] %>
+                    </h5>
+                    <p class="card-text">
+                        <span style="font-weight: 800;">Penjelasan Oleh AI: </span>
+                        <% if(analisa[i].soalId===soal.quizId ){ %>
+                            <%= analisa[i].content %>
+                                <% } %>
+                    </p>
+                </div>
+            </div>
+            <%}) %>
+    </div>
+    <%- include('../partials/dashboard/dashboard-footer') %>

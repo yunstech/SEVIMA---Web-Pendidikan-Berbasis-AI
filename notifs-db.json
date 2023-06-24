@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "649754676c4ad62494ab6bc1"
+  },
+  "content": "Total ada 1 soal, yang kamu tidak mengerti, segera pelajari lebih lanjut disini.",
+  "judul": "Ayo Perbaiki Nilai Matematika mu.",
+  "quizId": "649753fb040324fa6eb8ea96",
+  "isRead": true,
+  "userId": "649690b931a35260612fff88",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "649767927eb928586b375dc5"
+  },
+  "content": "Total ada 2 soal, yang kamu tidak mengerti, segera pelajari lebih lanjut disini.",
+  "judul": "Ayo Perbaiki Nilai Sejarah mu.",
+  "quizId": "6496cf298db2604be90717dd",
+  "isRead": true,
+  "userId": "6496d1ab9ec997b7e9c1c8b0",
+  "__v": 0
+}]

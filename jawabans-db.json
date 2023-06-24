@@ -1,0 +1,661 @@
+[{
+  "_id": {
+    "$oid": "6497415c282304c51c03c1d2"
+  },
+  "namaSiswa": "test3",
+  "userId": "6496d1ab9ec997b7e9c1c8b0",
+  "quizId": "6496c5cd92968ed131f900d8",
+  "isSelesai": true,
+  "quiz": [
+    {
+      "quizId": "773.8551818329476",
+      "soal": "1x1 =",
+      "jawaban": [
+        {
+          "A": "1",
+          "B": "2",
+          "C": "3",
+          "D": "4",
+          "E": "5",
+          "_id": {
+            "$oid": "6496c5cd92968ed131f900da"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "A",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497415c282304c51c03c1d3"
+      }
+    },
+    {
+      "quizId": "5315.440134742975",
+      "soal": "1x2 =",
+      "jawaban": [
+        {
+          "A": "1",
+          "B": "2",
+          "C": "3",
+          "D": "4",
+          "E": "5",
+          "_id": {
+            "$oid": "6496c5cd92968ed131f900dc"
+          }
+        }
+      ],
+      "jawabanBenar": "B",
+      "jawabanUser": "B",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497415c282304c51c03c1d5"
+      }
+    },
+    {
+      "quizId": "2917.297861755326",
+      "soal": "1x3 =",
+      "jawaban": [
+        {
+          "A": "1",
+          "B": "2",
+          "C": "3",
+          "D": "4",
+          "E": "5",
+          "_id": {
+            "$oid": "6496c5cd92968ed131f900de"
+          }
+        }
+      ],
+      "jawabanBenar": "C",
+      "jawabanUser": "B",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497415c282304c51c03c1d7"
+      }
+    },
+    {
+      "quizId": "6293.632255985426",
+      "soal": "1x4 =",
+      "jawaban": [
+        {
+          "A": "1",
+          "B": "2",
+          "C": "3",
+          "D": "4",
+          "E": "5",
+          "_id": {
+            "$oid": "6496c5cd92968ed131f900e0"
+          }
+        }
+      ],
+      "jawabanBenar": "D",
+      "jawabanUser": "E",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497415c282304c51c03c1d9"
+      }
+    },
+    {
+      "quizId": "8769.305999408949",
+      "soal": "1x5 =",
+      "jawaban": [
+        {
+          "A": "1",
+          "B": "2",
+          "C": "3",
+          "D": "4",
+          "E": "5",
+          "_id": {
+            "$oid": "6496c5cd92968ed131f900e2"
+          }
+        }
+      ],
+      "jawabanBenar": "E",
+      "jawabanUser": "E",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497415c282304c51c03c1db"
+      }
+    }
+  ],
+  "nilai": 60,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6497447d5b456a0fc946a9a8"
+  },
+  "namaSiswa": "test3",
+  "userId": "6496d1ab9ec997b7e9c1c8b0",
+  "quizId": "6496cf298db2604be90717dd",
+  "isSelesai": true,
+  "quiz": [
+    {
+      "quizId": "9626.973604415827",
+      "soal": "Siapakah tokoh terkenal yang memimpin Revolusi Industri di Inggris pada abad ke-18?",
+      "jawaban": [
+        {
+          "A": "James Watt",
+          "B": "Karl Marx",
+          "C": "Isaac Newton",
+          "D": "Leonardo da Vinci",
+          "E": "Puan",
+          "_id": {
+            "$oid": "6496cf298db2604be90717df"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "A",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497447d5b456a0fc946a9a9"
+      }
+    },
+    {
+      "quizId": "4552.9634035912995",
+      "soal": "Perjanjian Versailles, yang ditandatangani setelah Perang Dunia I, ditandai dengan:",
+      "jawaban": [
+        {
+          "A": "Pembentukan Liga Bangsa-Bangsa",
+          "B": "Pembentukan NATO",
+          "C": "Pembubaran Kekaisaran Romawi Suci",
+          "D": "Pemberian status merdeka kepada koloni-koloni Eropa di Afrika",
+          "E": "Pembentukan PDI",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e1"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "B",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497447d5b456a0fc946a9ab"
+      }
+    },
+    {
+      "quizId": "1573.9925704480618",
+      "soal": "Perang Dunia II dimulai ketika Jerman menyerang negara mana pada tanggal 1 September 1939?",
+      "jawaban": [
+        {
+          "A": "Prancis",
+          "B": "Britania Raya",
+          "C": "Uni Soviet",
+          "D": "Polandia",
+          "E": "Jakarta",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e3"
+          }
+        }
+      ],
+      "jawabanBenar": "D",
+      "jawabanUser": "C",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497447d5b456a0fc946a9ad"
+      }
+    },
+    {
+      "quizId": "5622.902900057878",
+      "soal": "Apa yang menjadi penyebab utama Revolusi Perancis pada tahun 1789?",
+      "jawaban": [
+        {
+          "A": "Kebijakan ekonomi yang tidak adil",
+          "B": "Kekurangan pasokan makanan",
+          "C": "Pemberontakan petani",
+          "D": "Pembubaran Kekaisaran Romawi Suci",
+          "E": "G30SPKI",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e5"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "A",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497447d5b456a0fc946a9af"
+      }
+    },
+    {
+      "quizId": "1298.2482021732267",
+      "soal": "Apa yang menjadi hasil dari Perang Dingin antara Amerika Serikat dan Uni Soviet?",
+      "jawaban": [
+        {
+          "A": "Keruntuhan Uni Soviet",
+          "B": "Pembentukan Perserikatan Bangsa-Bangsa",
+          "C": "Pembentukan Blok Barat dan Blok Timur",
+          "D": "Terbentuknya NATO",
+          "E": "Terbentuknya PKI",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e7"
+          }
+        }
+      ],
+      "jawabanBenar": "C",
+      "jawabanUser": "C",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497447d5b456a0fc946a9b1"
+      }
+    }
+  ],
+  "nilai": 60,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6497541f040324fa6eb8ead6"
+  },
+  "namaSiswa": "Muhammad Yunus",
+  "userId": "649690b931a35260612fff88",
+  "quizId": "649753fb040324fa6eb8ea96",
+  "isSelesai": true,
+  "quiz": [
+    {
+      "quizId": "6066.830529771363",
+      "soal": "Jika x = 4, maka hasil dari 3x + 2 adalah...",
+      "jawaban": [
+        {
+          "A": "10",
+          "B": "12",
+          "C": "14",
+          "D": "16",
+          "E": "11",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea98"
+          }
+        }
+      ],
+      "jawabanBenar": "D",
+      "jawabanUser": "D",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497541f040324fa6eb8ead7"
+      }
+    },
+    {
+      "quizId": "3789.7685292594406",
+      "soal": "Berapakah hasil dari 2^3 x 5^2 ?",
+      "jawaban": [
+        {
+          "A": "250",
+          "B": "245",
+          "C": "225",
+          "D": "256",
+          "E": "240",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea9a"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "A",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497541f040324fa6eb8ead9"
+      }
+    },
+    {
+      "quizId": "2240.919783168822",
+      "soal": "Jika sebuah segitiga memiliki panjang sisi a = 5 cm, b = 12 cm, dan c = 13 cm, maka segitiga tersebut merupakan segitiga...",
+      "jawaban": [
+        {
+          "A": "siku-siku",
+          "B": "sama sisi",
+          "C": "tumpul",
+          "D": "lancip",
+          "E": "melingkar",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea9c"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "C",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497541f040324fa6eb8eadb"
+      }
+    },
+    {
+      "quizId": "966.4610070347824",
+      "soal": "Jika harga sebuah barang sebesar Rp 250.000 mengalami penurunan harga sebesar 15%, maka harga setelah penurunan adalah...",
+      "jawaban": [
+        {
+          "A": "Rp 212.500",
+          "B": "Rp 221.500",
+          "C": "Rp 232.500",
+          "D": "Rp 255.000",
+          "E": "Rp 275.000",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea9e"
+          }
+        }
+      ],
+      "jawabanBenar": "B",
+      "jawabanUser": "B",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497541f040324fa6eb8eadd"
+      }
+    },
+    {
+      "quizId": "5797.466885006528",
+      "soal": "Jika (4x - 3)(2x + 5) = 0, maka nilai x yang memenuhi persamaan tersebut adalah...",
+      "jawaban": [
+        {
+          "A": "x = 3/4",
+          "B": "x = -5/2",
+          "C": "x = 5/2",
+          "D": "x = -3/4",
+          "E": "x = -3/2",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8eaa0"
+          }
+        }
+      ],
+      "jawabanBenar": "C",
+      "jawabanUser": "C",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "6497541f040324fa6eb8eadf"
+      }
+    }
+  ],
+  "nilai": 80,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "649754676c4ad62494ab6bc3"
+  },
+  "namaSiswa": "Muhammad Yunus",
+  "userId": "649690b931a35260612fff88",
+  "quizId": "649753fb040324fa6eb8ea96",
+  "isSelesai": true,
+  "quiz": [
+    {
+      "quizId": "6066.830529771363",
+      "soal": "Jika x = 4, maka hasil dari 3x + 2 adalah...",
+      "jawaban": [
+        {
+          "A": "10",
+          "B": "12",
+          "C": "14",
+          "D": "16",
+          "E": "11",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea98"
+          }
+        }
+      ],
+      "jawabanBenar": "D",
+      "jawabanUser": "D",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649754676c4ad62494ab6bc4"
+      }
+    },
+    {
+      "quizId": "3789.7685292594406",
+      "soal": "Berapakah hasil dari 2^3 x 5^2 ?",
+      "jawaban": [
+        {
+          "A": "250",
+          "B": "245",
+          "C": "225",
+          "D": "256",
+          "E": "240",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea9a"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "A",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649754676c4ad62494ab6bc6"
+      }
+    },
+    {
+      "quizId": "2240.919783168822",
+      "soal": "Jika sebuah segitiga memiliki panjang sisi a = 5 cm, b = 12 cm, dan c = 13 cm, maka segitiga tersebut merupakan segitiga...",
+      "jawaban": [
+        {
+          "A": "siku-siku",
+          "B": "sama sisi",
+          "C": "tumpul",
+          "D": "lancip",
+          "E": "melingkar",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea9c"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "C",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649754676c4ad62494ab6bc8"
+      }
+    },
+    {
+      "quizId": "966.4610070347824",
+      "soal": "Jika harga sebuah barang sebesar Rp 250.000 mengalami penurunan harga sebesar 15%, maka harga setelah penurunan adalah...",
+      "jawaban": [
+        {
+          "A": "Rp 212.500",
+          "B": "Rp 221.500",
+          "C": "Rp 232.500",
+          "D": "Rp 255.000",
+          "E": "Rp 275.000",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8ea9e"
+          }
+        }
+      ],
+      "jawabanBenar": "B",
+      "jawabanUser": "B",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649754676c4ad62494ab6bca"
+      }
+    },
+    {
+      "quizId": "5797.466885006528",
+      "soal": "Jika (4x - 3)(2x + 5) = 0, maka nilai x yang memenuhi persamaan tersebut adalah...",
+      "jawaban": [
+        {
+          "A": "x = 3/4",
+          "B": "x = -5/2",
+          "C": "x = 5/2",
+          "D": "x = -3/4",
+          "E": "x = -3/2",
+          "_id": {
+            "$oid": "649753fb040324fa6eb8eaa0"
+          }
+        }
+      ],
+      "jawabanBenar": "C",
+      "jawabanUser": "C",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649754676c4ad62494ab6bcc"
+      }
+    }
+  ],
+  "nilai": 80,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "649767927eb928586b375dc7"
+  },
+  "namaSiswa": "test3",
+  "userId": "6496d1ab9ec997b7e9c1c8b0",
+  "quizId": "6496cf298db2604be90717dd",
+  "isSelesai": true,
+  "quiz": [
+    {
+      "quizId": "9626.973604415827",
+      "soal": "Siapakah tokoh terkenal yang memimpin Revolusi Industri di Inggris pada abad ke-18?",
+      "jawaban": [
+        {
+          "A": "James Watt",
+          "B": "Karl Marx",
+          "C": "Isaac Newton",
+          "D": "Leonardo da Vinci",
+          "E": "Puan",
+          "_id": {
+            "$oid": "6496cf298db2604be90717df"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "A",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649767927eb928586b375dc8"
+      }
+    },
+    {
+      "quizId": "4552.9634035912995",
+      "soal": "Perjanjian Versailles, yang ditandatangani setelah Perang Dunia I, ditandai dengan:",
+      "jawaban": [
+        {
+          "A": "Pembentukan Liga Bangsa-Bangsa",
+          "B": "Pembentukan NATO",
+          "C": "Pembubaran Kekaisaran Romawi Suci",
+          "D": "Pemberian status merdeka kepada koloni-koloni Eropa di Afrika",
+          "E": "Pembentukan PDI",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e1"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "B",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649767927eb928586b375dca"
+      }
+    },
+    {
+      "quizId": "1573.9925704480618",
+      "soal": "Perang Dunia II dimulai ketika Jerman menyerang negara mana pada tanggal 1 September 1939?",
+      "jawaban": [
+        {
+          "A": "Prancis",
+          "B": "Britania Raya",
+          "C": "Uni Soviet",
+          "D": "Polandia",
+          "E": "Jakarta",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e3"
+          }
+        }
+      ],
+      "jawabanBenar": "D",
+      "jawabanUser": "D",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649767927eb928586b375dcc"
+      }
+    },
+    {
+      "quizId": "5622.902900057878",
+      "soal": "Apa yang menjadi penyebab utama Revolusi Perancis pada tahun 1789?",
+      "jawaban": [
+        {
+          "A": "Kebijakan ekonomi yang tidak adil",
+          "B": "Kekurangan pasokan makanan",
+          "C": "Pemberontakan petani",
+          "D": "Pembubaran Kekaisaran Romawi Suci",
+          "E": "G30SPKI",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e5"
+          }
+        }
+      ],
+      "jawabanBenar": "A",
+      "jawabanUser": "C",
+      "isBenar": false,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649767927eb928586b375dce"
+      }
+    },
+    {
+      "quizId": "1298.2482021732267",
+      "soal": "Apa yang menjadi hasil dari Perang Dingin antara Amerika Serikat dan Uni Soviet?",
+      "jawaban": [
+        {
+          "A": "Keruntuhan Uni Soviet",
+          "B": "Pembentukan Perserikatan Bangsa-Bangsa",
+          "C": "Pembentukan Blok Barat dan Blok Timur",
+          "D": "Terbentuknya NATO",
+          "E": "Terbentuknya PKI",
+          "_id": {
+            "$oid": "6496cf298db2604be90717e7"
+          }
+        }
+      ],
+      "jawabanBenar": "C",
+      "jawabanUser": "C",
+      "isBenar": true,
+      "skor": 20,
+      "isJawab": true,
+      "_id": {
+        "$oid": "649767927eb928586b375dd0"
+      }
+    }
+  ],
+  "nilai": 60,
+  "__v": 0
+}]

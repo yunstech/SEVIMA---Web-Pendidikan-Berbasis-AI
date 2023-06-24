@@ -20,9 +20,9 @@ const quizSchema = new mongoose.Schema({
             default: false
         }
     }],
-    classId: String,
-    batasWaktu: Number,
+    kelasId: String,
     waktuPengerjaan: Number,
+    jumlahSoal: Number,
     isStart: {
         type: Boolean,
         default: false
@@ -40,4 +40,4 @@ const validateData = (data) => {
 
 exports.Quiz = Quiz;
 exports.quizSchema = quizSchema;
-exports.validate = validateData;
+exports.validateQuiz = validateData;

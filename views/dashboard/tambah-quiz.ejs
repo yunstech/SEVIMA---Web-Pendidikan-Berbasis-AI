@@ -1,0 +1,146 @@
+<%- include('../partials/dashboard/dashboard-header') %>
+    <div class="container">
+
+        <ol class="list-group list-group-numbered" id="baseList">
+        </ol>
+        <form action="/dashboard/tambah-quiz" id="form-quiz" class="my-5" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Judul Soal</label>
+                <input type="text" class="form-control" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="kelasId" class="form-label">Kelas ID</label>
+                <input type="text" class="form-control" name="kelasId">
+            </div>
+            <div class="mb-3">
+                <label for="waktuPengerjaan" class="form-label">Waktu Pengerjaan</label>
+                <input type="number" class="form-control" name="waktuPengerjaan">
+            </div>
+            <input type="number" name="jumlahSoal" hidden="true" id="jumlahSoal">
+            <input type="text" name="soal" hidden="true" id="soal">
+            <button class="btn btn-primary my-5" disabled id="submit">Submit</button>
+        </form>
+        <div class="text-center">
+
+            <button type="button" class="btn btn-primary my-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Tambah Soal
+            </button>
+            <button class="btn btn-success" onclick="convert()">Convert Soal</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Soal</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Soal</label>
+                            <input type="email" class="form-control" id="soal-quiz" name="soal-quiz"
+                                id="exampleFormControlInput1" placeholder="Soal">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">A</label>
+                            <input type="email" class="form-control" id="A" name="jawaban-A"
+                                id="exampleFormControlInput1" placeholder="Jawaban">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">B</label>
+                            <input type="email" class="form-control" id="B" name="jawaban-B"
+                                id="exampleFormControlInput1" placeholder="Jawaban">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">C</label>
+                            <input type="email" class="form-control" id="C" name="jawaban-C"
+                                id="exampleFormControlInput1" placeholder="Jawaban">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">D</label>
+                            <input type="email" class="form-control" id="D" name="jawaban-D"
+                                id="exampleFormControlInput1" placeholder="Jawaban">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">E</label>
+                            <input type="email" class="form-control" id="E" name="jawaban-E"
+                                id="exampleFormControlInput1" placeholder="Jawaban">
+                        </div>
+                        <select class="form-select mb-3" aria-label="Default select example" id="jawabanBenar"
+                            name="jawabanBenar">
+                            <option selected>Jawaban Benar</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="save()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const list = ["soal-quiz", 'A', 'B', 'C', 'D', "E", "jawabanBenar"]
+        soalBank = []
+        jumlahSoal = 1
+        function save() {
+
+            const soal = {}
+            list.forEach((name, i) => {
+                // console.log(e)
+                soal[name] = document.getElementById(name).value;
+                // console.log(document.getElementById(name).value)
+                // nameTag.value = nameTag.getAttribute('data-default-value')
+            })
+
+            soalBank.push(soal);
+
+            const elementLi = document.createElement('li');
+            elementLi.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start")
+            const elementDiv = document.createElement('div');
+            elementDiv.classList.add("ms-2", "me-auto")
+            var textnode1 = document.createTextNode("Soal : " + soalBank[0].soal);
+            elementDiv.appendChild(textnode1);
+            const elementDiv2 = document.createElement('div');
+            elementDiv2.classList.add("fw-bold")
+            var textnode = document.createTextNode("Jawaban : " + soalBank[0].jawabanBenar);
+            elementDiv2.appendChild(textnode);
+            const elementInput = document.createElement('input');
+            elementInput.setAttribute('disabled', 'true')
+            elementInput.setAttribute('type', 'text')
+
+            elementInput.setAttribute('hidden', 'true')
+            elementInput.setAttribute('value', JSON.stringify(soalBank))
+            elementInput.setAttribute('name', 'soal' + jumlahSoal)
+            elementDiv2.appendChild(elementInput)
+            elementDiv.appendChild(elementDiv2)
+            elementLi.appendChild(elementDiv)
+            document.getElementById('baseList').appendChild(elementLi)
+
+            // const elementInput1 = document.createElement('input');
+            // elementInput1.setAttribute('type', 'text')
+            // elementInput1.setAttribute('value', JSON.stringify(soalBank))
+
+            // elementInput1.setAttribute('hidden', 'true')
+            // elementInput1.setAttribute('name', 'soal' + jumlahSoal)
+            // document.getElementById('form-quiz').appendChild(elementInput1)
+
+            document.getElementById('jumlahSoal').setAttribute('value', jumlahSoal)
+
+
+            jumlahSoal++
+
+
+            console.log(JSON.stringify(soalBank))
+        }
+        function convert() {
+            document.getElementById('soal').setAttribute('value', JSON.stringify(soalBank))
+            document.getElementById('submit').removeAttribute('disabled')
+        }
+    </script>
+    <%- include('../partials/dashboard/dashboard-footer') %>

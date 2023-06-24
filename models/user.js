@@ -18,14 +18,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 5,
-        maxlength: 1024,
     },
     kelas: {
         type: String,
         required: true,
-        minlength: 5,
-        maxlength: 1024,
     },
     kelasId: {
         type: String,
@@ -47,7 +43,10 @@ const userSchema = new mongoose.Schema({
         maxlength: 1024,
     },
     role: String,
-    isAdmin: Boolean,
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
 });
 
 userSchema.methods.generateAuthToken = function (res, ingat) {
@@ -73,9 +72,14 @@ const User = mongoose.model("User", userSchema);
 
 const validateData = (data) => {
     const schema = Joi.object({
-        name: Joi.string().min(5).required(),
+        nama: Joi.string().min(5).required(),
         email: Joi.string().email().min(5).required(),
         password: Joi.string().min(5).required(),
+        kelas: Joi.string().required(),
+        kelasId: Joi.string(),
+        noAbsen: Joi.number(),
+        foto: Joi.string(),
+        role: Joi.string(),
     });
     return schema.validate(data);
 };

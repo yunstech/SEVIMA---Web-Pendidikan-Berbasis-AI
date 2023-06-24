@@ -11,12 +11,19 @@ const admin = require("../middleware/admin");
 const { User, validate } = require('../models/user')
 
 router.get("/tambah-user", [auth, admin], async (req, res) => {
+    const currentUser = await User.findOne({
+        _id: req.user._id,
+    });
     res.render('dashboard/tambah-user', {
-        msg: ''
+        msg: '',
+        user: currentUser
     })
 });
 
 router.post("/tambah-user", [auth, admin], async (req, res) => {
+    const currentUser = await User.findOne({
+        _id: req.user._id,
+    });
     const { error } = validate(req.body)
     if (error) return res.status(400).render('dashboard/tambah-user', {
         msg: `<div class="alert alert-danger" role="alert">
@@ -41,13 +48,15 @@ router.post("/tambah-user", [auth, admin], async (req, res) => {
         res.render('dashboard/tambah-user', {
             msg: `<div class="alert alert-success" role="alert">
             "Murid berhasil ditambahkan."
-        </div>`
+        </div>`,
+            user: currentUser
         })
     } catch (e) {
         res.render('dashboard/tambah-user', {
             msg: `<div class="alert alert-danger" role="alert">
             ${e.message}
-        </div>`
+        </div>`,
+            user: currentUser
         })
     }
 });

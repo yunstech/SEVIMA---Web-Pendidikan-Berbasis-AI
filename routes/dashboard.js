@@ -19,13 +19,15 @@ router.get("/", [auth], async (req, res) => {
 
 router.get('/list-quiz', [auth], async (req, res) => {
     const quizzes = await Quiz.find();
-    console.log(quizzes[0])
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
+
+    console.log(currentUser)
     res.render('dashboard/list-quiz', {
         user: currentUser,
-        msg: ''
+        msg: req.query.msg,
+        quizzes: quizzes
     })
 })
 
@@ -80,19 +82,13 @@ router.post('/tambah-quiz', [auth], async (req, res) => {
         })
 
         await newQuiz.save()
-        res.render('dashboard/list-quiz', {
-            user: currentUser,
-            msg: `<div class="alert alert-success" role="alert">
+        res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-success" role="alert">
             Quiz berhasil ditambahkan.
-        </div>`
-        })
+        </div>`)
     } catch (e) {
-        res.render('dashboard/list-quiz', {
-            user: currentUser,
-            msg: `<div class="alert alert-danger" role="alert">
+        res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-danger" role="alert">
             ${e.message}
-        </div>`
-        })
+        </div>`)
     }
 })
 

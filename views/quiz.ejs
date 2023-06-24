@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quiz</title>
     <link rel="stylesheet" href="css/style.css">
@@ -13,26 +14,65 @@
 
 <body>
     <section class="quiz-top-bar">
-        <h3>Soal : nama ujian</h3>
-        <h3>Waktu : waktu pengerjaan</h3>
+        <h3>Soal : <%= quiz.title %>
+        </h3>
+        <h3>Waktu : <%= quiz.waktuPengerjaan %>
+        </h3>
     </section>
 
     <section class="quiz-main">
         <div class="container mx-auto">
             <div class="body-quiz">
-                <h2 class="soal">soal</h2>
-                <ul class="pilihan">
-                    <li class="jawaban">A : Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci, iure
-                        iusto. Odit est reiciendis dolorem! At, aliquid, impedit ipsum amet aspernatur ipsam dolorem
-                        exercitationem molestiae perspiciatis ipsa veniam voluptas officiis et ducimus hic commodi animi
-                        excepturi assumenda sequi laudantium dolorum fugit laborum dolor. Quia magnam, porro a possimus
-                        temporibus rerum?</li>
-                    <li class="jawaban">C : Pilihan</li>
-                    <li class="jawaban">B : Pilihan</li>
-                    <li class="jawaban">D : Pilihan</li>
-                    <li class="jawaban">E : Pilihan</li>
-                </ul>
-                <button class="btn btn-quiz btn-primary">Next</button>
+                <h2 class="soal">
+                    <%= soal.soal %>
+                </h2>
+                <form action="/quiz/submit/<%= quiz._id %>/<%= soal._id %>">
+                    <ul class="pilihan">
+                        <li class="jawaban">
+                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
+                            <label class="form-check-label" for="jawabanQuiz1" value="A">
+                                A : <%= soal.jawaban[0]["A"] %>
+                            </label>
+                        </li>
+                        <li class="jawaban">
+                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
+                            <label class="form-check-label" for="jawabanQuiz1" value="B">
+                                B : <%= soal.jawaban[0]["B"] %>
+                            </label>
+                        </li>
+                        <li class="jawaban">
+                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
+                            <label class="form-check-label" for="jawabanQuiz1" value="C">
+                                C : <%= soal.jawaban[0]["C"] %>
+                            </label>
+
+                        </li>
+                        <li class="jawaban">
+                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
+                            <label class="form-check-label" for="jawabanQuiz1" value="D">
+                                D : <%= soal.jawaban[0]["D"] %>
+                            </label>
+                        </li>
+                        <li class="jawaban">
+                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
+                            <label class="form-check-label" for="jawabanQuiz1" value="E">
+                                E : <%= soal.jawaban[0]["E"] %>
+                            </label>
+                        </li>
+                    </ul>
+                    <% if(param===quiz.jumlahSoal+1){%>
+                        <!-- <a href="/quiz/<%=quiz._id%>/<%= param %>"><button
+                                class="btn btn-quiz btn-primary">Submit</button></a> -->
+                        <button type="submit" class="btn btn-quiz btn-primary">Submit</button>
+                        <%}else{%>
+                            <!-- <a href="/quiz/<%=quiz._id%>/<%= param %>"><button
+                                    class="btn btn-quiz btn-primary">Next</button></a> -->
+                            <button type="submit" class="btn btn-quiz btn-primary">Lanjut</button>
+                            <%} %>
+
+                </form>
+
+
             </div>
         </div>
     </section>

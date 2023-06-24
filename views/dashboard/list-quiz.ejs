@@ -4,4 +4,42 @@
         <% if(msg){ %> <%- msg %>
                 <% } %>
     </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Soal</th>
+                    <th scope="col">Tool</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% quizzes.forEach((quiz, i)=> { %>
+
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= quiz.title %>
+                        </td>
+                        <% if( user.role==="guru" || user.isAdmin ){%>
+
+                            <td><a href="/quiz/hasil/<%= quiz._id %>"><button class="btn btn-primary mx-2">Lihat
+                                        Hasil</button></a><a href="/dasboard/hapus-quiz/<%= quiz._id %>"></a><button
+                                    class="btn btn-danger">Hapus</button></td>
+                            <% }%>
+                                <% if( user.role==="murid" || user.isAdmin ){%>
+
+                                    <td><a href="/quiz/hasil"><button class="btn btn-primary mx-2">Lihat
+                                                Hasil</button></a><a href="/quiz/<%= quiz._id %>/1"><button
+                                                class="btn btn-success">Kerjakan</button></a>
+                                    </td>
+                                    <% }%>
+                    </tr>
+                    <%})%>
+            </tbody>
+        </table>
+    </div>
     <%- include('../partials/dashboard/dashboard-footer') %>

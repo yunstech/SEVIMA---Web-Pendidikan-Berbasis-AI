@@ -16,17 +16,14 @@
 <body>
 
     <div class="context">
-        <div class="alert" style="width: 100%; margin: 20px auto;">
+        <div style="width: 100%; margin: 20px auto;" class="text-center">
 
-            <% if(msg !='' ) { %>
-                <div class="alert alert-success" role="alert">
-                    <%- msg %>
-                </div>
-                <% } %>
+            <% if(msg){ %> <%- msg %>
+                    <% } %>
         </div>
         <form action="/login" class="login-form" method="POST">
             <span class="sign-in-text">Masuk</span>
-            <input type="text" name="username" class="input--glass email" placeholder="Username">
+            <input type="email" name="email" class="input--glass email" placeholder="Email">
             <input type="password" name="password" class="input--glass password" placeholder="Password">
             <div class="form-check">
                 <input type="checkbox" name="ingat" class="form-check-input" id="exampleCheck1">

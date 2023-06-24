@@ -4,6 +4,7 @@ const dashboard = require('../routes/dashboard')
 const quiz = require('../routes/quiz')
 const admin = require('../routes/admin')
 const chatBot = require('../routes/chat-bot')
+const tugas = require('../routes/tugas')
 
 module.exports = (app) => {
     app.use("/", home);
@@ -11,6 +12,7 @@ module.exports = (app) => {
     app.use("/quiz", quiz);
     app.use("/admin", admin);
     app.use("/chat-bot", chatBot);
+    app.use("/tugas", tugas);
 
 
     app.get('*', function (req, res) {

@@ -11,7 +11,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Soal</th>
-                    <th scope="col">Tool</th>
+                    <th scope="col" style="text-align: right;">Tool</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,19 +23,19 @@
                         </th>
                         <td>
                             <%= quiz.title %>
-                        </td>
+                        </td style="text-align: right;">
                         <% if( user.role==="guru" || user.isAdmin ){%>
 
-                            <td><a href="/quiz/hasil/<%= quiz._id %>"><button class="btn btn-primary mx-2">Lihat
-                                        Hasil</button></a><a href="/dasboard/hapus-quiz/<%= quiz._id %>"></a><button
-                                    class="btn btn-danger">Hapus</button></td>
+                            <td><a href="/quiz/hasil/<%= quiz._id %>"><button class="btn btn-primary mx-2 ms-auto">Lihat
+                                        Hasil</button></a><a href="/dashboard/hapus-quiz/<%= quiz._id %>"><button
+                                        class="btn btn-danger ms-auto">Hapus</button></a></td>
                             <% }%>
                                 <% if( user.role==="murid" || user.isAdmin ){%>
 
-                                    <td><a href="/quiz/analisa-hasil/<%= quiz._id %>"><button
+                                    <td style="text-align: right;"><a href="/quiz/analisa-hasil/<%= quiz._id %>"><button
                                                 class="btn btn-primary mx-2">Analisa
                                                 Hasil</button></a><a href="/quiz/<%= quiz._id %>"><button
-                                                class="btn btn-success">Kerjakan</button></a>
+                                                class="btn btn-success ">Kerjakan</button></a>
                                     </td>
                                     <% }%>
                     </tr>

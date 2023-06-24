@@ -6,7 +6,7 @@
     </div>
 
     <div class="container">
-        <form action="/admin/tambah-user" method="POST">
+        <form action="/admin/tambah-user" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" name="nama">
@@ -36,9 +36,9 @@
                 <option value="guru">Guru</option>
                 <option value="murid">Murid</option>
             </select>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">URL Foto</label>
-                <input type="text" class="form-control" name="foto">
+            <div class="input mb-3">
+                <label for="url" class="form-label">Foto :</label>
+                <input class="form-control" type="file" id="formFile" name="url">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

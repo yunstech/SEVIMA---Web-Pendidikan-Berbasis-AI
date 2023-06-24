@@ -1,11 +1,9 @@
 const express = require('express')
 const router = express.Router();
-
 const auth = require("../middleware/auth");
-
 const { Analyze } = require('../models/analyze')
+const { Notif } = require('../models/notification')
 const { User, validate } = require('../models/user')
-
 const { Quiz, validateQuiz } = require('../models/quiz')
 const { Jawaban } = require('../models/jawaban')
 const { Configuration, OpenAIApi } = require('openai')
@@ -41,6 +39,18 @@ router.post('/submit/:quizId', [auth], async (req, res) => {
         listJawaban.push(jawabanQuiz)
     })
     let benar = listJawaban.filter(c => c.isBenar)
+    let salah = listJawaban.filter(c => !c.isBenar)
+    if (salah) {
+        const newNotif = new Notif({
+            content: `Total ada ${salah.length} soal, yang kamu tidak mengerti, segera pelajari lebih lanjut disini.`,
+            judul: `Ayo Perbaiki Nilai ${quiz.title} mu.`,
+            quizId: req.params.quizId,
+            isRead: false,
+            userId: currentUser._id
+        })
+
+        await newNotif.save()
+    }
 
     // listJawaban.push(jawabanQuiz)
 
@@ -75,11 +85,15 @@ router.get('/analisa-hasil/:quizId', [auth], async (req, res) => {
         basePath: "https://api.pawan.krd/v1",
     });
 
-    const openai = new OpenAIApi(configuration);
-
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
+    const openai = new OpenAIApi(configuration);
+    await Notif.findOneAndUpdate({ quizId: req.params.quizId }, {
+        isRead: true
+    })
     const jawaban = await Jawaban.findOne({ quizId: req.params.quizId, userId: currentUser._id })
     if (!jawaban) return res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-warning" role="alert">
             Kamu belum menyelesaikan quiz ini.
@@ -93,19 +107,20 @@ router.get('/analisa-hasil/:quizId', [auth], async (req, res) => {
         })
         if (!analyzeData || analyzeData === null) {
 
+            try {
+                await openai.createChatCompletion({
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "system", content: `${soal.soal} jelaskan dengan padat dan jelas` }]
+                }).then(async response => {
 
-            openai.createChatCompletion({
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "system", content: `${soal.soal} jelaskan dengan padat dan jelas` }]
-            }).then(async res => {
 
-                try {
 
-                    if (!res.data.choices) {
-                        console.log("Maybe Server Down")
+                    if (!response.data.choices) {
+                        console.log("AI Server Down")
+                        return res.send("AI Server Down")
                     } else {
                         let datas = {
-                            content: await res.data.choices[0].message.content,
+                            content: await response.data.choices[0].message.content,
                             quizId: jawaban.quizId,
                             soalId: soal.quizId
                         }
@@ -116,11 +131,11 @@ router.get('/analisa-hasil/:quizId', [auth], async (req, res) => {
                         await newAnalyze.save()
                     }
 
-                } catch (e) {
-                    console.log(e.message)
-                }
-            })
 
+                })
+            } catch (e) {
+                console.log(e.message)
+            }
         } else {
             hasilAnalisa.push(analyzeData)
         }
@@ -130,11 +145,15 @@ router.get('/analisa-hasil/:quizId', [auth], async (req, res) => {
         user: currentUser,
         quiz: jawaban,
         salah: salah,
-        analisa: hasilAnalisa
+        analisa: hasilAnalisa,
+        belumBaca: belumBaca.length,
+        notif: notif
     })
 
 
 })
+
+
 
 
 module.exports = router;

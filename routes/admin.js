@@ -1,22 +1,49 @@
 const express = require('express')
 const router = express.Router();
-
 const winston = require('winston')
 const bcrypt = require("bcrypt");
-
-
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 
 const { User, validate } = require('../models/user')
+const { Notif } = require('../models/notification')
+const multer = require('multer')
+const fs = require('fs')
+const path = require("path");
+
+function encode(url) {
+    const base64Img = require('base64-img')
+    let data = base64Img.base64Sync(url)
+    return data
+}
+
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, './')
+        },
+        filename: (req, file, cb) => {
+            req.fileIdentifier = Date.now() + path.extname(file.originalname);
+            cb(null, req.fileIdentifier)
+        }
+    })
+})
+
+
+
 
 router.get("/tambah-user", [auth, admin], async (req, res) => {
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
     res.render('dashboard/tambah-user', {
         msg: '',
-        user: currentUser
+        user: currentUser,
+        belumBaca: belumBaca.length,
+        notif: notif
     })
 });
 
@@ -66,10 +93,15 @@ router.get('/list-user', [auth, admin], async (req, res) => {
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
     res.render("dashboard/list-user", {
         list: users,
         user: currentUser,
-        msg: req.query.msg
+        msg: req.query.msg,
+
+        belumBaca: belumBaca.length,
+        notif: notif
     });
 })
 
@@ -77,19 +109,29 @@ router.get('/edit-user/:id', [auth, admin], async (req, res) => {
     const user = await User.findOne({
         _id: req.params.id
     }).sort('nama');
+
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
 
 
     res.render('dashboard/edit-user', {
         siswa: user,
-        user: currentUser
+        user: currentUser,
+        belumBaca: belumBaca.length,
+        notif: notif
     })
 })
 
 
-router.post('/edit-user/:id', [auth, admin], async (req, res) => {
+router.post('/edit-user/:id', upload.single('foto'), [auth, admin], async (req, res) => {
+    let imageLocation = req.fileIdentifier
+    if (imageLocation !== undefined) {
+        req.body.foto = encode(imageLocation);
+        fs.unlinkSync(imageLocation)
+    }
     const { nama, email, kelas, kelasId, noAbsen, password, role, foto, isAdmin } = req.body
     let updateUser = {
         nama: nama,

@@ -1,0 +1,32 @@
+<%- include('../partials/dashboard/dashboard-header') %>
+    <div class="container">
+        <div class="card mb-3 text-bg-dark">
+            <img src="<%= tugas.foto %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Tugas</h5>
+                <p class="card-text">
+                    <%= tugas.content %>
+                </p>
+                <p class="card-text"><small class="text-body-secondary">
+                        <%= tugas.nama %>
+                    </small></p>
+            </div>
+        </div>
+        <ul class="list-group my-3">
+            <% tugas.uploadTugas.forEach(upload=> {%>
+                <li class="list-group-item list-group-item-action list-group-item-dark">
+                    <%= upload.nama %> telah mengerjakan.
+                </li>
+                <%}) %>
+        </ul>
+        <div class="uploadTugas">
+            <form action="/tugas/upload-tugas/<%= tugas._id %>" method="POST" enctype="multipart/form-data">
+                <div class="input mb-3">
+                    <label for="foto" class="form-label">Upload Tugas :</label>
+                    <input class="form-control" type="file" id="formFile" name="foto">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <%- include('../partials/dashboard/dashboard-footer') %>

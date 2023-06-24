@@ -5,16 +5,23 @@ const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 
 const { Quiz, validateQuiz } = require('../models/quiz')
+const { Tugas } = require('../models/tugas')
 const { User, validate } = require('../models/user')
+const { Notif } = require('../models/notification')
 
 router.get("/", [auth], async (req, res) => {
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
-
+    const tugas = await Tugas.find({})
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
     res.render('dashboard/dashboard', {
         user: currentUser,
-        msg: req.query.msg
+        msg: req.query.msg,
+        belumBaca: belumBaca.length,
+        notif: notif,
+        tugas: tugas
     })
 });
 
@@ -23,12 +30,14 @@ router.get('/list-quiz', [auth], async (req, res) => {
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
-
-    console.log(currentUser)
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
     res.render('dashboard/list-quiz', {
         user: currentUser,
         msg: req.query.msg,
-        quizzes: quizzes
+        quizzes: quizzes,
+        belumBaca: belumBaca.length,
+        notif: notif
     })
 })
 
@@ -36,8 +45,12 @@ router.get('/tambah-quiz', [auth], async (req, res) => {
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
     res.render('dashboard/tambah-quiz', {
-        user: currentUser
+        user: currentUser,
+        belumBaca: belumBaca.length,
+        notif: notif
     })
 })
 
@@ -47,13 +60,11 @@ router.post('/tambah-quiz', [auth], async (req, res) => {
     });
 
     const parsed = JSON.parse(req.body.soal)
-    console.log(parsed)
     let soalBank = []
 
 
     const { title, kelasId, waktuPengerjaan, jumlahSoal } = req.body
     parsed.forEach(quiz => {
-        console.log(quiz)
         let soalTemplate = {
             quizId: Math.random() * 10000,
             soal: quiz['soal-quiz'],
@@ -70,7 +81,6 @@ router.post('/tambah-quiz', [auth], async (req, res) => {
         soalBank.push(soalTemplate)
     })
 
-    console.log(soalBank)
 
     try {
 
@@ -93,9 +103,15 @@ router.post('/tambah-quiz', [auth], async (req, res) => {
     }
 })
 
-router.get('/edit-quiz', [auth], async (req, res) => {
-
+router.get('/hapus-quiz/:quizId', [auth], async (req, res) => {
+    const quiz = await Quiz.findOneAndDelete({ _id: req.params.quizId })
+    console.log(quiz)
+    if (!quiz) return res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-danger" role="alert">
+            Quiz Tidak Ditemukan.
+        </div>`)
+    res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-success" role="alert">
+            Quiz Berhasil Dihapus.
+        </div>`)
 })
-
 
 module.exports = router;

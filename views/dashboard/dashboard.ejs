@@ -4,4 +4,40 @@
         <% if(msg){ %> <%- msg %>
                 <% } %>
     </div>
+    <div class="container">
+        <% if(user.role==='guru' || user.isAdmin ){%>
+            <div class="post ">
+                <div class="row">
+                    <form action="/tugas/tambah-tugas" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Post Tugas</label>
+                            <textarea class="form-control" name="content" id="exampleFormControlTextarea1"
+                                rows="4"></textarea>
+                        </div>
+                        <div class="input mb-3">
+                            <label for="foto" class="form-label">Foto :</label>
+                            <input class="form-control" type="file" id="formFile" name="foto">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <%} %>
+                <div class="feed mt-4">
+                    <% tugas.forEach(feed=> {%>
+                        <div class="card text-bg-dark my-3">
+                            <h5 class="card-header text-bg-dark">
+                                <%= feed.nama %>
+                            </h5>
+                            <div class="card-body">
+                                <h5 class="card-title">Tugas</h5>
+                                <p class="card-text">
+                                    <%= feed.content %>
+                                </p>
+                                <a href="/tugas/<%= feed._id %>" class="btn btn-primary">Lihat</a>
+                            </div>
+                        </div>
+                        <%}) %>
+                </div>
+    </div>
     <%- include('../partials/dashboard/dashboard-footer') %>

@@ -298,8 +298,78 @@ body {
 
 .jumbotron {
     padding: 2rem 1rem;
-    background-color: #171717;
+    background-image: url('/asset/img/banner-cr.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     color: #fff;
+    position: relative;
+    z-index: -1;
+}
+
+.content-jumbo {
+    z-index: 2 !important;
+}
+
+
+.jumbotron::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 225, 255, 0) 50%, rgba(0, 0, 0, 1) 100%);
+    border-radius: 5px;
+    z-index: -1;
 }
 
 /* AKHIR JUBOTRON CSS */
+
+/* AWAL FITUR, CONTACT & TENTANG CSS */
+
+.fitur,
+.tentang,
+.contact-us {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.card {
+    margin: auto;
+}
+
+.fitur h2,
+.tentang h2,
+.contact-us h2 {
+    width: fit-content;
+    margin: 20px auto;
+    padding: 5px;
+    border-bottom: 3px solid black;
+
+}
+
+.tentang {
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+/* AKHIR FITUR, CONTACT & TENTANG CSS */
+
+/* AWAL FOOTER CSS */
+.footer {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(0, 0, 0, 1);
+    height: 50px;
+    line-height: 50px;
+}
+
+.footer a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+/* AKHIR FOOTER CSS */

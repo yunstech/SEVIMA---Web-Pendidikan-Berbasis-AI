@@ -13,7 +13,8 @@ router.get("/", [auth], async (req, res) => {
     });
 
     res.render('dashboard/dashboard', {
-        user: currentUser
+        user: currentUser,
+        msg: req.query.msg
     })
 });
 

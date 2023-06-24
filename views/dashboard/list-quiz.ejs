@@ -32,8 +32,9 @@
                             <% }%>
                                 <% if( user.role==="murid" || user.isAdmin ){%>
 
-                                    <td><a href="/quiz/hasil"><button class="btn btn-primary mx-2">Lihat
-                                                Hasil</button></a><a href="/quiz/<%= quiz._id %>/1"><button
+                                    <td><a href="/quiz/analisa-hasil/<%= quiz._id %>"><button
+                                                class="btn btn-primary mx-2">Analisa
+                                                Hasil</button></a><a href="/quiz/<%= quiz._id %>"><button
                                                 class="btn btn-success">Kerjakan</button></a>
                                     </td>
                                     <% }%>

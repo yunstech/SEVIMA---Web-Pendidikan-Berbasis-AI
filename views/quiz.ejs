@@ -19,63 +19,63 @@
         <h3>Waktu : <%= quiz.waktuPengerjaan %>
         </h3>
     </section>
+    <form action="/quiz/submit/<%= quiz._id %>" method="POST">
+        <section class="quiz-main">
+            <div class="container mx-auto">
+                <div class="body-quiz">
+                    <% quiz.quiz.forEach((soal, i)=> { %>
+                        <h2 class="soal">
+                            <%= i+1 %> : <%= soal.soal %>
+                        </h2>
+                        <ul class="pilihan">
+                            <li class="jawaban">
+                                <input class="form-check-input" type="radio" name="<%= soal.quizId %>" value="A"
+                                    id="jawabanQuiz<%= i %>">
+                                <label class="form-check-label">
+                                    A : <%= soal.jawaban[0]["A"] %>
+                                </label>
+                            </li>
+                            <li class="jawaban">
+                                <input class="form-check-input" type="radio" name="<%= soal.quizId %>" value="B"
+                                    id="jawabanQuiz<%= i %>">
+                                <label class="form-check-label">
+                                    B : <%= soal.jawaban[0]["B"] %>
+                                </label>
+                            </li>
+                            <li class="jawaban">
+                                <input class="form-check-input" type="radio" name="<%= soal.quizId %>" value="C"
+                                    id="jawabanQuiz<%= i %>">
+                                <label class="form-check-label">
+                                    C : <%= soal.jawaban[0]["C"] %>
+                                </label>
 
-    <section class="quiz-main">
-        <div class="container mx-auto">
-            <div class="body-quiz">
-                <h2 class="soal">
-                    <%= soal.soal %>
-                </h2>
-                <form action="/quiz/submit/<%= quiz._id %>/<%= soal._id %>">
-                    <ul class="pilihan">
-                        <li class="jawaban">
-                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
-                            <label class="form-check-label" for="jawabanQuiz1" value="A">
-                                A : <%= soal.jawaban[0]["A"] %>
-                            </label>
-                        </li>
-                        <li class="jawaban">
-                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
-                            <label class="form-check-label" for="jawabanQuiz1" value="B">
-                                B : <%= soal.jawaban[0]["B"] %>
-                            </label>
-                        </li>
-                        <li class="jawaban">
-                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
-                            <label class="form-check-label" for="jawabanQuiz1" value="C">
-                                C : <%= soal.jawaban[0]["C"] %>
-                            </label>
-
-                        </li>
-                        <li class="jawaban">
-                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
-                            <label class="form-check-label" for="jawabanQuiz1" value="D">
-                                D : <%= soal.jawaban[0]["D"] %>
-                            </label>
-                        </li>
-                        <li class="jawaban">
-                            <input class="form-check-input" type="radio" name="jawabanQuiz" id="jawabanQuiz1">
-                            <label class="form-check-label" for="jawabanQuiz1" value="E">
-                                E : <%= soal.jawaban[0]["E"] %>
-                            </label>
-                        </li>
-                    </ul>
-                    <% if(param===quiz.jumlahSoal+1){%>
-                        <!-- <a href="/quiz/<%=quiz._id%>/<%= param %>"><button
-                                class="btn btn-quiz btn-primary">Submit</button></a> -->
-                        <button type="submit" class="btn btn-quiz btn-primary">Submit</button>
-                        <%}else{%>
-                            <!-- <a href="/quiz/<%=quiz._id%>/<%= param %>"><button
-                                    class="btn btn-quiz btn-primary">Next</button></a> -->
-                            <button type="submit" class="btn btn-quiz btn-primary">Lanjut</button>
-                            <%} %>
-
-                </form>
+                            </li>
+                            <li class="jawaban">
+                                <input class="form-check-input" type="radio" name="<%= soal.quizId %>" value="D"
+                                    id="jawabanQuiz<%= i %>">
+                                <label class="form-check-label">
+                                    D : <%= soal.jawaban[0]["D"] %>
+                                </label>
+                            </li>
+                            <li class="jawaban">
+                                <input class="form-check-input" type="radio" name="<%= soal.quizId %>" value="E"
+                                    id="jawabanQuiz<%= i %>">
+                                <label class="form-check-label">
+                                    E : <%= soal.jawaban[0]["E"] %>
+                                </label>
+                            </li>
+                        </ul>
 
 
+                        <%}) %>
+                            <button type="submit" class="btn btn-quiz btn-primary">Submit</button>
+
+
+
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

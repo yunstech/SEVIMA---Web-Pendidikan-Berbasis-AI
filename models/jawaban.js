@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const jawabanSchema = new mongoose.Schema({
     namaSiswa: String,
     classId: String,
+    userId: String,
+    quizId: String,
     isSelesai: {
         type: Boolean,
         default: false
@@ -18,19 +20,20 @@ const jawabanSchema = new mongoose.Schema({
             E: String
         }],
         jawabanBenar: String,
+        jawabanUser: String,
+        isBenar: Boolean,
         skor: Number,
         isJawab: {
             type: Boolean,
             default: false
-        }
+        },
+        isAnalyzed: Boolean
     }],
-    dimulai: Date,
-    selesai: Date,
     nilai: Number
 })
 
 const Jawaban = mongoose.model("Jawaban", jawabanSchema)
 
 
-exports.Quiz = Quiz;
-exports.quizSchema = quizSchema;
+exports.Jawaban = Jawaban;
+exports.jawabanSchema = jawabanSchema;

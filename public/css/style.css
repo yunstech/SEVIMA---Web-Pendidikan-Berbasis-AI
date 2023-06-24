@@ -288,8 +288,18 @@ body {
     list-style-type: none;
 }
 
-.btn {
+.btn-quiz {
     margin: 20px;
 }
 
 /* AKHIR QUIZ CSS */
+
+/* AWAL JUMBOTRON CSS */
+
+.jumbotron {
+    padding: 2rem 1rem;
+    background-color: #171717;
+    color: #fff;
+}
+
+/* AKHIR JUBOTRON CSS */

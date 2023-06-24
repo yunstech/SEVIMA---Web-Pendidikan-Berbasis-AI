@@ -1,0 +1,38 @@
+<%- include('../partials/dashboard/dashboard-header') %>
+    <div style="width: 50%; margin: 20px auto;" class="text-center">
+
+        <% if(msg){ %> <%- msg %>
+                <% } %>
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Siswa</th>
+                    <th scope="col" style="text-align: right;">Tool</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% quiz.forEach((hasil, i)=> { %>
+
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= hasil.namaSiswa %>
+                        </td style="text-align: right;">
+
+                        <td style="text-align: right;"><a
+                                href="/quiz/analisa-hasil-guru/<%= hasil.quizId %>/<%= hasil.userId %>"><button
+                                    class="btn btn-primary mx-2">Analisa
+                                    Hasil</button></a>
+                        </td>
+                    </tr>
+                    <%})%>
+            </tbody>
+        </table>
+    </div>
+    <%- include('../partials/dashboard/dashboard-footer') %>

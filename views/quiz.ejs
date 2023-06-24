@@ -16,17 +16,15 @@
     <section class="quiz-top-bar">
         <h3>Soal : <%= quiz.title %>
         </h3>
-        <h3>Waktu : <%= quiz.waktuPengerjaan %>
-        </h3>
     </section>
     <form action="/quiz/submit/<%= quiz._id %>" method="POST">
         <section class="quiz-main">
             <div class="container mx-auto">
                 <div class="body-quiz">
                     <% quiz.quiz.forEach((soal, i)=> { %>
-                        <h2 class="soal">
+                        <h4 class="soal">
                             <%= i+1 %> : <%= soal.soal %>
-                        </h2>
+                        </h4>
                         <ul class="pilihan">
                             <li class="jawaban">
                                 <input class="form-check-input" type="radio" name="<%= soal.quizId %>" value="A"

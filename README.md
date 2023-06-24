@@ -9,3 +9,28 @@ Hi there, I'm <a href="https://yunstech.netlify.app/" target="_blank" rel="noref
 <h2 align="center"> 
   Hackathon SEVIMA - Membuat Website Pendidikan Berbasis AI
 </h2>
+
+## Features
+
+- Menganalisis kekurangan siswa melalui tes.
+- Chat Bot
+- Quiz dengan analisis dari Open AI
+- Tugas Online
+- Pemberitahuan Saat Nilai Anda Kurang Bagus
+
+## Alat/Tools Yang Digunakan
+
+- EJS
+- MongoDB
+- Express JS
+- Dotenv
+- Config
+- Bcrypt
+- Bootstrap 5.3, 5.2
+- SB Admin Pro
+- OpenAI API (PawanOsman Repo)
+- Multer
+- Winston
+- JWT
+- Base64Img
+

@@ -153,6 +153,96 @@ router.get('/analisa-hasil/:quizId', [auth], async (req, res) => {
 
 })
 
+router.get('/analisa-hasil-guru/:quizId/:userId', [auth], async (req, res) => {
+    const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY,
+        basePath: "https://api.pawan.krd/v1",
+    });
+
+    const currentUser = await User.findOne({
+        _id: req.user._id,
+    });
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
+    const openai = new OpenAIApi(configuration);
+    await Notif.findOneAndUpdate({ quizId: req.params.quizId }, {
+        isRead: true
+    })
+    const jawaban = await Jawaban.findOne({ quizId: req.params.quizId, userId: req.params.userId })
+    if (!jawaban) return res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-warning" role="alert">
+            Kamu belum menyelesaikan quiz ini.
+        </div>`)
+    let salah = jawaban.quiz.filter(c => !c.isBenar)
+    let hasilAnalisa = []
+    for (let soal of salah) {
+        const analyzeData = await Analyze.findOne({
+            quizId: jawaban.quizId,
+            soalId: soal.quizId
+        })
+        if (!analyzeData || analyzeData === null) {
+
+            try {
+                await openai.createChatCompletion({
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "system", content: `${soal.soal} jelaskan dengan padat dan jelas` }]
+                }).then(async response => {
+
+
+
+                    if (!response.data.choices) {
+                        console.log("AI Server Down")
+                        return res.send("AI Server Down")
+                    } else {
+                        let datas = {
+                            content: await response.data.choices[0].message.content,
+                            quizId: jawaban.quizId,
+                            soalId: soal.quizId
+                        }
+                        hasilAnalisa.push(datas)
+
+
+                        const newAnalyze = new Analyze(datas)
+                        await newAnalyze.save()
+                    }
+
+
+                })
+            } catch (e) {
+                console.log(e.message)
+            }
+        } else {
+            hasilAnalisa.push(analyzeData)
+        }
+    }
+    console.log(jawaban)
+    res.render('dashboard/analisis-quiz', {
+        user: currentUser,
+        quiz: jawaban,
+        salah: salah,
+        analisa: hasilAnalisa,
+        belumBaca: belumBaca.length,
+        notif: notif
+    })
+
+
+})
+
+router.get('/lihat-hasil/:quizId', [auth], async (req, res) => {
+    const currentUser = await User.findOne({
+        _id: req.user._id,
+    });
+    const notif = await Notif.find({ userId: currentUser._id })
+    let belumBaca = notif.filter(c => !c.isRead)
+    const hasil = await Jawaban.find({ quizId: req.params.quizId })
+    res.render('dashboard/hasil-quiz', {
+        user: currentUser,
+        belumBaca: belumBaca.length,
+        notif: notif,
+        quiz: hasil,
+        msg: req.query.msg
+    })
+})
+
 
 
 

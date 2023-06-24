@@ -26,7 +26,8 @@
                         </td style="text-align: right;">
                         <% if( user.role==="guru" || user.isAdmin ){%>
 
-                            <td><a href="/quiz/hasil/<%= quiz._id %>"><button class="btn btn-primary mx-2 ms-auto">Lihat
+                            <td><a href="/quiz/lihat-hasil/<%= quiz._id %>"><button
+                                        class="btn btn-primary mx-2 ms-auto">Lihat
                                         Hasil</button></a><a href="/dashboard/hapus-quiz/<%= quiz._id %>"><button
                                         class="btn btn-danger ms-auto">Hapus</button></a></td>
                             <% }%>

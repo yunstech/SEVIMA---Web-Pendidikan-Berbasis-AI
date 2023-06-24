@@ -1,7 +1,13 @@
 <%- include('../partials/dashboard/dashboard-header') %>
     <div class="container">
-        <h4>Nilai : <%= quiz.nilai %>
-        </h4>
+        <div class="info shadow-sm rounded" style="width: 40%; padding: 10px;">
+            <h3>Nama : <%= quiz.namaSiswa %>
+            </h3>
+            <h2>Nilai : <%= quiz.nilai %>
+            </h2>
+
+
+        </div>
         <% salah.forEach((soal, i)=> { %>
 
 

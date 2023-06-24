@@ -70,13 +70,61 @@ router.post('/submit/:quizId', [auth], async (req, res) => {
 
 
 router.get('/analisa-hasil/:quizId', [auth], async (req, res) => {
+    const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY,
+        basePath: "https://api.pawan.krd/v1",
+    });
+
+    const openai = new OpenAIApi(configuration);
 
     const currentUser = await User.findOne({
         _id: req.user._id,
     });
     const jawaban = await Jawaban.findOne({ quizId: req.params.quizId, userId: currentUser._id })
+    if (!jawaban) return res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-warning" role="alert">
+            Kamu belum menyelesaikan quiz ini.
+        </div>`)
     let salah = jawaban.quiz.filter(c => !c.isBenar)
-    let hasilAnalisa = await analyzeCall(req, currentUser)
+    let hasilAnalisa = []
+    for (let soal of salah) {
+        const analyzeData = await Analyze.findOne({
+            quizId: jawaban.quizId,
+            soalId: soal.quizId
+        })
+        if (!analyzeData || analyzeData === null) {
+
+
+            openai.createChatCompletion({
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "system", content: `${soal.soal} jelaskan dengan padat dan jelas` }]
+            }).then(async res => {
+
+                try {
+
+                    if (!res.data.choices) {
+                        console.log("Maybe Server Down")
+                    } else {
+                        let datas = {
+                            content: await res.data.choices[0].message.content,
+                            quizId: jawaban.quizId,
+                            soalId: soal.quizId
+                        }
+                        hasilAnalisa.push(datas)
+
+
+                        const newAnalyze = new Analyze(datas)
+                        await newAnalyze.save()
+                    }
+
+                } catch (e) {
+                    console.log(e.message)
+                }
+            })
+
+        } else {
+            hasilAnalisa.push(analyzeData)
+        }
+    }
     console.log(hasilAnalisa)
     res.render('dashboard/analisis-quiz', {
         user: currentUser,
@@ -87,72 +135,6 @@ router.get('/analisa-hasil/:quizId', [auth], async (req, res) => {
 
 
 })
-
-
-async function operation(req, currentUser) {
-    return new Promise(async function (resolve, reject) {
-        const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY,
-            basePath: "https://api.pawan.krd/v1",
-        });
-
-        const openai = new OpenAIApi(configuration);
-
-        const jawaban = await Jawaban.findOne({ quizId: req.params.quizId, userId: currentUser._id })
-        if (!jawaban) return res.redirect('/dashboard/list-quiz?msg=' + `<div class="alert alert-warning" role="alert">
-            Kamu belum menyelesaikan quiz ini.
-        </div>`)
-        let salah = jawaban.quiz.filter(c => !c.isBenar)
-        let hasilAnalisa = []
-        for (let soal of salah) {
-            const analyzeData = await Analyze.findOne({
-                quizId: jawaban.quizId,
-                soalId: soal.quizId
-            })
-            if (!analyzeData || analyzeData === null) {
-
-
-                openai.createChatCompletion({
-                    model: "gpt-3.5-turbo",
-                    messages: [{ role: "system", content: `${soal.soal} jelaskan dengan padat dan jelas` }]
-                }).then(async res => {
-
-                    try {
-
-                        if (!res.data.choices) {
-                            console.log("Maybe Server Down")
-                        } else {
-                            let datas = {
-                                content: await res.data.choices[0].message.content,
-                                quizId: jawaban.quizId,
-                                soalId: soal.quizId
-                            }
-                            hasilAnalisa.push(datas)
-
-
-                            const newAnalyze = new Analyze(datas)
-                            await newAnalyze.save()
-                        }
-
-                    } catch (e) {
-                        console.log(e.message)
-                    }
-                })
-
-            } else {
-                hasilAnalisa.push(analyzeData)
-            }
-        }
-
-        // may be a heavy db call or http request?
-        resolve(hasilAnalisa) // successfully fill promise
-    })
-}
-
-async function analyzeCall(req, currentUser) {
-    return await operation(req, currentUser)
-}
-
 
 
 module.exports = router;

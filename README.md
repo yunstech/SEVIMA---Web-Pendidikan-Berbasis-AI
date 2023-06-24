@@ -7,5 +7,5 @@
 Hi there, I'm <a href="https://yunstech.netlify.app/" target="_blank" rel="noreferrer">Yunstech</a> 👋
 </h3>
 <h2 align="center"> 
-  Hackathon SEVIMA - Membuat Website Pendidikan Berbasis Android
+  Hackathon SEVIMA - Membuat Website Pendidikan Berbasis AI
 </h2>
